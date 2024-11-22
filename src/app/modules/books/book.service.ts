@@ -21,6 +21,9 @@ const getAllBooks = async () => {
 
 const getBookById = async (id: string) => {
   try {
+    if (!Types.ObjectId.isValid(id)) {
+      throw new Error("ID is not valid. Provide a mongodb _id");
+    }
     const result = await BookModel.findById(id);
     return result;
   } catch (err) {

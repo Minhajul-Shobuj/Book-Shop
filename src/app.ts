@@ -3,6 +3,7 @@ import express from "express";
 import cors from "cors";
 import { BookRoute } from "./app/modules/books/book.route";
 import { OrderRoute } from "./app/modules/orders/order.route";
+import errorHandler from "./app/middlewares/errorHandler";
 const app = express();
 
 //parser
@@ -17,4 +18,6 @@ app.get("/", (req: Request, res: Response) => {
   res.send("Hello World!");
 });
 
+//middleWares
+app.use(errorHandler);
 export default app;

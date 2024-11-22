@@ -1,4 +1,4 @@
-import { Request, Response } from "express";
+import { NextFunction, Request, Response } from "express";
 import { BookService } from "./book.service";
 
 const createBook = async (req: Request, res: Response) => {
@@ -36,20 +36,25 @@ const getBooks = async (req: Request, res: Response) => {
   }
 };
 
-const getSingleBook = async (req: Request, res: Response) => {
+const getSingleBook = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
   try {
     const id = req.params.id;
     const book = await BookService.getBookById(id);
+    if (!book) {
+      const error = new Error("Book not found");
+      res.status(404);
+      return next(error);
+    }
     res.status(200).json({
       success: true,
       data: book,
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Book not Found",
-      error: err,
-    });
+    next(err);
   }
 };
 const deleteBook = async (req: Request, res: Response) => {
@@ -75,7 +80,7 @@ const updateBook = async (req: Request, res: Response) => {
     const updatedBook = await BookService.updateBook(id, data);
     res.status(200).json({
       success: true,
-      data: updateBook,
+      data: updatedBook,
     });
   } catch (err) {
     res.status(500).json({
