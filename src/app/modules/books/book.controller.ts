@@ -39,11 +39,43 @@ const getBooks = async (req: Request, res: Response) => {
 const getSingleBook = async (req: Request, res: Response) => {
   try {
     const id = req.params.id;
-    console.log(id);
     const book = await BookService.getBookById(id);
     res.status(200).json({
       success: true,
       data: book,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Book not Found",
+      error: err,
+    });
+  }
+};
+const deleteBook = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const book = await BookService.deleteBook(id);
+    res.status(200).json({
+      success: true,
+      data: book,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Book not Found",
+      error: err,
+    });
+  }
+};
+const updateBook = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    const data = req.body;
+    const updatedBook = await BookService.updateBook(id, data);
+    res.status(200).json({
+      success: true,
+      data: updateBook,
     });
   } catch (err) {
     res.status(500).json({
@@ -58,4 +90,6 @@ export const BookController = {
   createBook,
   getBooks,
   getSingleBook,
+  deleteBook,
+  updateBook,
 };

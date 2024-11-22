@@ -20,23 +20,35 @@ const getAllBooks = async () => {
 };
 
 const getBookById = async (id: string) => {
-  const result = await BookModel.findById(id);
-  return result;
+  try {
+    const result = await BookModel.findById(id);
+    return result;
+  } catch (err) {
+    throw err;
+  }
 };
 
-// const getBookById = async (id: string) => {
-//   try {
-//     if (!Types.ObjectId.isValid(id)) {
-//       throw new Error("Id is not valid");
-//     }
-//     const result = await BookModel.findById(id);
-//     return result;
-//   } catch (err) {
-//     throw err;
-//   }
-// };
+const deleteBook = async (id: string) => {
+  try {
+    const result = await BookModel.deleteOne({ _id: id });
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};
+
+const updateBook = async (id: string, data: object) => {
+  try {
+    const result = await BookModel.findOneAndUpdate({ _id: id }, data);
+    return result;
+  } catch (err) {
+    throw err;
+  }
+};
 export const BookService = {
   createBookIndb,
   getAllBooks,
   getBookById,
+  deleteBook,
+  updateBook,
 };
