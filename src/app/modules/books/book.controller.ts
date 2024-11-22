@@ -19,6 +19,43 @@ const createBook = async (req: Request, res: Response) => {
   }
 };
 
+const getBooks = async (req: Request, res: Response) => {
+  try {
+    const books = await BookService.getAllBooks();
+    res.status(200).json({
+      success: true,
+      data: books,
+    });
+  } catch (err) {
+    console.error("Error fetching books:", err);
+    res.status(500).json({
+      success: false,
+      message: "Failed to fetch books",
+      error: err,
+    });
+  }
+};
+
+const getSingleBook = async (req: Request, res: Response) => {
+  try {
+    const id = req.params.id;
+    console.log(id);
+    const book = await BookService.getBookById(id);
+    res.status(200).json({
+      success: true,
+      data: book,
+    });
+  } catch (err) {
+    res.status(500).json({
+      success: false,
+      message: "Book not Found",
+      error: err,
+    });
+  }
+};
+
 export const BookController = {
   createBook,
+  getBooks,
+  getSingleBook,
 };

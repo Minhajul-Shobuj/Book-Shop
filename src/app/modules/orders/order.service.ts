@@ -12,17 +12,6 @@ const createOrderIndb = async (order: Order) => {
   }
 };
 
-const getAllOrders = async () => {
-  try {
-    const result = await OrderModel.find().populate("product");
-    return result;
-  } catch (err) {
-    console.error("Error creating user in DB:", err);
-    throw err;
-  }
-};
-
 export const OrderService = {
   createOrderIndb,
-  getAllOrders,
 };
