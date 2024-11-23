@@ -46,7 +46,6 @@ const getSingleBook = async (
     const book = await BookService.getBookById(id);
     if (!book) {
       const error = new Error("Book not found");
-      res.status(404);
       return next(error);
     }
     res.status(200).json({
@@ -57,7 +56,7 @@ const getSingleBook = async (
     next(err);
   }
 };
-const deleteBook = async (req: Request, res: Response) => {
+const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = req.params.id;
     const book = await BookService.deleteBook(id);
@@ -66,14 +65,10 @@ const deleteBook = async (req: Request, res: Response) => {
       data: book,
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Book not Found",
-      error: err,
-    });
+    next(err);
   }
 };
-const updateBook = async (req: Request, res: Response) => {
+const updateBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = req.params.id;
     const data = req.body;
@@ -83,11 +78,7 @@ const updateBook = async (req: Request, res: Response) => {
       data: updatedBook,
     });
   } catch (err) {
-    res.status(500).json({
-      success: false,
-      message: "Book not Found",
-      error: err,
-    });
+    next(err);
   }
 };
 
