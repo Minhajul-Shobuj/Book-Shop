@@ -21,6 +21,13 @@ const orderSchema = new Schema<Order>({
     type: Number,
     required: [true, "Total price is required"],
     min: [0, "Total price must be a positive number"], // Ensure total price is non-negative
+    validate: {
+      validator: function (value: number) {
+        return value >= this.quantity * 1; // Example logic: totalPrice must be at least `quantity * minimum product price`.
+      },
+      message:
+        "Total price must be at least the product price multiplied by quantity",
+    },
   },
 });
 
