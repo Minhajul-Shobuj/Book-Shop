@@ -1,6 +1,7 @@
 import { Types } from "mongoose";
 import { Book } from "./book.interface";
 import { BookModel } from "./book.model";
+import { validateUpdateData } from "../../validator/validator";
 
 //add new book on database.
 const addBookIndb = async (book: Book) => {
@@ -23,12 +24,12 @@ const getAllBooks = async () => {
 };
 
 //get a specific book using _id from database
-const getBookById = async (id: string) => {
+const getBookById = async (bookId: string) => {
   try {
-    if (!Types.ObjectId.isValid(id)) {
+    if (!Types.ObjectId.isValid(bookId)) {
       throw new Error("ID is not valid. Provide a mongodb _id");
     }
-    const result = await BookModel.findById(id);
+    const result = await BookModel.findById(bookId);
     return result;
   } catch (err: any) {
     throw new Error(err);
@@ -36,17 +37,17 @@ const getBookById = async (id: string) => {
 };
 
 //delete a specific book from database usig _id
-const deleteBook = async (id: string) => {
+const deleteBook = async (bookId: string) => {
   try {
-    if (!Types.ObjectId.isValid(id)) {
+    if (!Types.ObjectId.isValid(bookId)) {
       throw new Error("ID is not valid. Provide a mongodb _id");
     }
-    const checkBook = await BookModel.findById(id);
+    const checkBook = await BookModel.findById(bookId);
     if (!checkBook) {
       const error = new Error("Book not found");
       throw error;
     }
-    const result = await BookModel.deleteOne({ _id: id });
+    const result = await BookModel.deleteOne({ _id: bookId });
     return result;
   } catch (err: any) {
     throw new Error(err);
@@ -54,9 +55,9 @@ const deleteBook = async (id: string) => {
 };
 
 //update a specific book fields on database using _id
-const updateBook = async (id: string, data: object) => {
+const updateBook = async (bookId: string, data: object) => {
   try {
-    if (!Types.ObjectId.isValid(id)) {
+    if (!Types.ObjectId.isValid(bookId)) {
       throw new Error("ID is not valid. Provide a mongodb _id");
     }
     const checkData = validateUpdateData(data);
@@ -64,7 +65,7 @@ const updateBook = async (id: string, data: object) => {
       const error = new Error("data is not valid");
       throw error;
     }
-    const result = await BookModel.findOneAndUpdate({ _id: id }, data, {
+    const result = await BookModel.findOneAndUpdate({ _id: bookId }, data, {
       new: true,
       runValidators: true,
     });
@@ -74,21 +75,6 @@ const updateBook = async (id: string, data: object) => {
   }
 };
 
-//checking provided data for updating a book fields
-const validateUpdateData = (data: object): boolean => {
-  const allowedFields = [
-    "title",
-    "author",
-    "price",
-    "category",
-    "description",
-    "quantity",
-    "inStock",
-  ];
-  const keys = Object.keys(data);
-  const isValid = keys.every((key) => allowedFields.includes(key));
-  return isValid && keys.length > 0;
-};
 export const BookService = {
   addBookIndb,
   getAllBooks,

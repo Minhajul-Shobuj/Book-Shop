@@ -16,6 +16,6 @@ router.get("/:bookId", BookController.getSingleBook);
 router.delete("/:bookId", BookController.deleteBook);
 
 // route for update a book fields using _id from database.
-router.put("/:id", BookController.updateBook);
+router.put("/:bookId", BookController.updateBook);
 
 export const BookRoute = router;

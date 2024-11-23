@@ -4,11 +4,9 @@ import { OrderModel } from "./order.model";
 const createOrderIndb = async (order: Order) => {
   try {
     const result = await OrderModel.create(order);
-    console.log(result);
     return result;
-  } catch (err) {
-    console.error("Error creating user in DB:", err);
-    throw err;
+  } catch (err: any) {
+    throw new Error(err);
   }
 };
 

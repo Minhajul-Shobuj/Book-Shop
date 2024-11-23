@@ -1,21 +1,16 @@
 import { NextFunction, Request, Response } from "express";
 import { OrderService } from "./order.service";
 
-const createOrder = async (req: Request, res: Response) => {
+const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const order = req.body;
-    const result = await OrderService.createOrderIndb(order);
-    console.log(result);
+    const newOrder = await OrderService.createOrderIndb(order);
     res.status(200).json({
       success: true,
-      data: result,
+      data: newOrder,
     });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err,
-      message: "something went wrong",
-    });
+  } catch (err: any) {
+    next(err);
   }
 };
 
