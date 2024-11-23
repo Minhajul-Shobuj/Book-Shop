@@ -1,41 +1,35 @@
 import { NextFunction, Request, Response } from "express";
 import { BookService } from "./book.service";
 
-const createBook = async (req: Request, res: Response) => {
+// controller for adding new book on database.
+const addBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const book = req.body;
-    const result = await BookService.createBookIndb(book);
-    console.log(result);
+    const result = await BookService.addBookIndb(book);
     res.status(200).json({
       success: true,
       data: result,
     });
-  } catch (err) {
-    res.status(500).json({
-      success: false,
-      error: err,
-      message: "something went wrong",
-    });
+  } catch (err: any) {
+    next(err);
   }
 };
 
-const getBooks = async (req: Request, res: Response) => {
+// controller for getting all book from database.
+const getBooks = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const books = await BookService.getAllBooks();
     res.status(200).json({
       success: true,
       data: books,
     });
-  } catch (err) {
-    console.error("Error fetching books:", err);
-    res.status(500).json({
-      success: false,
-      message: "Failed to fetch books",
-      error: err,
-    });
+  } catch (err: any) {
+    const error = new Error("Error fetching books:");
+    next(error);
   }
 };
 
+// controller for getting a specific book using _id from database.
 const getSingleBook = async (
   req: Request,
   res: Response,
@@ -56,6 +50,8 @@ const getSingleBook = async (
     next(err);
   }
 };
+
+// controller for deleting a specific book using _id from database.
 const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = req.params.id;
@@ -68,6 +64,8 @@ const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
     next(err);
   }
 };
+
+// controller for updating a specific book fields using _id on database.
 const updateBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const id = req.params.id;
@@ -83,7 +81,7 @@ const updateBook = async (req: Request, res: Response, next: NextFunction) => {
 };
 
 export const BookController = {
-  createBook,
+  addBook,
   getBooks,
   getSingleBook,
   deleteBook,

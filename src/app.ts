@@ -11,11 +11,11 @@ app.use(express.json());
 app.use(cors());
 
 //application routes
-app.use("/api/v1/books", BookRoute);
-app.use("/api/v1/orders", OrderRoute);
+app.use("/api/books", BookRoute);
+app.use("/api/orders", OrderRoute);
 
 app.get("/", (req: Request, res: Response) => {
-  res.send("Hello World!");
+  res.send("Book Shop B4A2V1");
 });
 
 //middleWares

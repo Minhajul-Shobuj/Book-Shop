@@ -2,14 +2,17 @@ import { Types } from "mongoose";
 import { Book } from "./book.interface";
 import { BookModel } from "./book.model";
 
-const createBookIndb = async (book: Book) => {
+//add new book on database.
+const addBookIndb = async (book: Book) => {
   try {
     const result = await BookModel.create(book);
     return result;
-  } catch (error: any) {
-    throw new Error(error);
+  } catch (err: any) {
+    throw new Error(err);
   }
 };
+
+//get all book from database
 const getAllBooks = async () => {
   try {
     const result = await BookModel.find();
@@ -19,6 +22,7 @@ const getAllBooks = async () => {
   }
 };
 
+//get a specific book using _id from database
 const getBookById = async (id: string) => {
   try {
     if (!Types.ObjectId.isValid(id)) {
@@ -31,6 +35,7 @@ const getBookById = async (id: string) => {
   }
 };
 
+//delete a specific book from database usig _id
 const deleteBook = async (id: string) => {
   try {
     if (!Types.ObjectId.isValid(id)) {
@@ -48,6 +53,7 @@ const deleteBook = async (id: string) => {
   }
 };
 
+//update a specific book fields on database using _id
 const updateBook = async (id: string, data: object) => {
   try {
     if (!Types.ObjectId.isValid(id)) {
@@ -67,7 +73,8 @@ const updateBook = async (id: string, data: object) => {
     throw err;
   }
 };
-//checking provided data for updating a field
+
+//checking provided data for updating a book fields
 const validateUpdateData = (data: object): boolean => {
   const allowedFields = [
     "title",
@@ -83,7 +90,7 @@ const validateUpdateData = (data: object): boolean => {
   return isValid && keys.length > 0;
 };
 export const BookService = {
-  createBookIndb,
+  addBookIndb,
   getAllBooks,
   getBookById,
   deleteBook,
