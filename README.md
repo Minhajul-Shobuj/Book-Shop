@@ -1,6 +1,6 @@
 # 📚 Project Name
 
-This is a backend application for e-commerce app. The application is created using typescript, express, mongoose. Used MongoDb atlas for database. It has maximum number of crud operation that an e-commerce application needed.
+_This is a backend application for e-commerce app. The application is created using typescript, express, mongoose. Used MongoDb atlas for database. It has maximum number of crud operation that an e-commerce application needed._
 
 ---
 
@@ -14,6 +14,7 @@ This is a backend application for e-commerce app. The application is created usi
 
 ✅ **Feature 1**: Can add, update, delete product. Can get products and can also get exact product using \_id;  
 ✅ **Feature 2**: Can post order and get total revenue from all orders.
+
 ✅ **Feature 3**: All api has meningful validation with error message and where it stucked.
 
 ---
