@@ -1,5 +1,5 @@
-import { NextFunction, Request, Response } from "express";
-import { BookService } from "./book.service";
+import { NextFunction, Request, Response } from 'express';
+import { BookService } from './book.service';
 
 // controller for adding new book on database.
 const addBook = async (req: Request, res: Response, next: NextFunction) => {
@@ -10,7 +10,7 @@ const addBook = async (req: Request, res: Response, next: NextFunction) => {
       success: true,
       data: result,
     });
-  } catch (err: any) {
+  } catch (err) {
     next(err);
   }
 };
@@ -23,9 +23,8 @@ const getBooks = async (req: Request, res: Response, next: NextFunction) => {
       success: true,
       data: books,
     });
-  } catch (err: any) {
-    const error = new Error("Error fetching books:");
-    next(error);
+  } catch (err) {
+    next(err);
   }
 };
 
@@ -33,13 +32,13 @@ const getBooks = async (req: Request, res: Response, next: NextFunction) => {
 const getSingleBook = async (
   req: Request,
   res: Response,
-  next: NextFunction
+  next: NextFunction,
 ) => {
   try {
     const id = req.params.bookId;
     const book = await BookService.getBookById(id);
     if (!book) {
-      const error = new Error("Book not found");
+      const error = new Error('Book not found');
       return next(error);
     }
     res.status(200).json({

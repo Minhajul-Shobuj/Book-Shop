@@ -1,6 +1,6 @@
-import app from "./app";
-import config from "./app/config";
-import mongoose from "mongoose";
+import app from './app';
+import config from './app/config';
+import mongoose from 'mongoose';
 const port = config.port;
 const url = config.url;
 
@@ -15,7 +15,7 @@ async function main() {
     app.listen(port, () => {
       console.log(`Example app listening on port ${port}`);
     });
-  } catch (err: any) {
-    throw new Error(err);
+  } catch (err) {
+    throw err;
   }
 }

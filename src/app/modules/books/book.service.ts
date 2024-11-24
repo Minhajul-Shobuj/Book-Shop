@@ -1,7 +1,7 @@
-import { Types } from "mongoose";
-import { Book } from "./book.interface";
-import { BookModel } from "./book.model";
-import { validateUpdateData } from "../../validator/validator";
+import { Types } from 'mongoose';
+import { Book } from './book.interface';
+import { BookModel } from './book.model';
+import { validateUpdateData } from '../../validator/validator';
 
 //add new book on database.
 const addBookIndb = async (book: Book) => {
@@ -27,7 +27,7 @@ const getAllBooks = async () => {
 const getBookById = async (bookId: string) => {
   try {
     if (!Types.ObjectId.isValid(bookId)) {
-      throw new Error("ID is not valid. Provide a mongodb _id");
+      throw new Error('ID is not valid. Provide a mongodb _id');
     }
     const result = await BookModel.findById(bookId);
     return result;
@@ -40,11 +40,11 @@ const getBookById = async (bookId: string) => {
 const deleteBook = async (bookId: string) => {
   try {
     if (!Types.ObjectId.isValid(bookId)) {
-      throw new Error("ID is not valid. Provide a mongodb _id");
+      throw new Error('ID is not valid. Provide a mongodb _id');
     }
     const checkBook = await BookModel.findById(bookId);
     if (!checkBook) {
-      const error = new Error("Book not found");
+      const error = new Error('Book not found');
       throw error;
     }
     const result = await BookModel.deleteOne({ _id: bookId });
@@ -58,11 +58,11 @@ const deleteBook = async (bookId: string) => {
 const updateBook = async (bookId: string, data: object) => {
   try {
     if (!Types.ObjectId.isValid(bookId)) {
-      throw new Error("ID is not valid. Provide a mongodb _id");
+      throw new Error('ID is not valid. Provide a mongodb _id');
     }
     const checkData = validateUpdateData(data);
     if (!checkData) {
-      const error = new Error("data is not valid");
+      const error = new Error('data is not valid');
       throw error;
     }
     const result = await BookModel.findOneAndUpdate({ _id: bookId }, data, {
@@ -70,8 +70,8 @@ const updateBook = async (bookId: string, data: object) => {
       runValidators: true,
     });
     return result;
-  } catch (err) {
-    throw err;
+  } catch (err: any) {
+    throw new Error(err);
   }
 };
 
