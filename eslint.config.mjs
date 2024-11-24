@@ -11,11 +11,11 @@ export default [
   {
     ignores: ['.node_modules/*'],
     rules: {
-      '@typescript-eslint/no-explicit-any': [
-        'error',
-        { ignoreRestArgs: true }, // Allows `any` in rest args
-      ],
       'no-unused-vars': 'error',
+      'no-unused-expression': 'error',
+      'no-console': 'warn',
+      'prefer-const': 'error',
+      'no-undef': 'error',
     },
   },
 ];
