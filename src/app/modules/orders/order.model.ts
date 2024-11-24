@@ -1,17 +1,12 @@
-import mongoose, { model, Schema, Types } from "mongoose";
+import mongoose, { model, Schema } from "mongoose";
 import { Order } from "./order.interface";
-import { BookModel } from "../books/book.model";
-
-const validateEmail = (email: string): boolean => {
-  const emailRegex = /.+\@.+\..+/;
-  return emailRegex.test(email);
-};
+import { validateEmail, vlidateProduct } from "../../validator/validator";
 
 const orderSchema = new Schema<Order>(
   {
     email: {
       type: String,
-      required: [true, "Customer email is required"],
+      required: [true, "email is required"],
       validate: {
         validator: validateEmail,
         message: "Please enter a valid email address",
@@ -21,6 +16,10 @@ const orderSchema = new Schema<Order>(
       type: mongoose.Schema.Types.ObjectId,
       ref: "Book",
       required: [true, "Product is required"],
+      validate: {
+        validator: vlidateProduct,
+        message: "Please enter a valid Product id",
+      },
     },
     quantity: {
       type: Number,
