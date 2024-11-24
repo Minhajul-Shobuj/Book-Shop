@@ -37,3 +37,43 @@ git https://github.com/Minhajul-Shobuj/Book-Shop
 cd your-repository-name
 
 ```
+
+### Step 2: Install dependencies
+
+```bash
+npm install
+
+```
+
+### Step 3: Setup Environment Variables
+
+Create a .env file in the root directory and add your environment variables:
+
+```
+NODE_ENV=development
+PORT=5000
+MONGO_URI=your-mongodb-uri
+
+```
+
+▶️ Usage
+Development Server:
+Start the development server:
+
+```bash
+npm run dev
+```
+
+Production Server:
+
+1. Build the project:
+
+```bash
+npm run build
+```
+
+2. Start the server:
+
+```bash
+npm start
+```
