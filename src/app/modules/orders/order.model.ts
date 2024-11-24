@@ -1,6 +1,6 @@
 import mongoose, { model, Schema } from "mongoose";
 import { Order } from "./order.interface";
-import { validateEmail, vlidateProduct } from "../../validator/validator";
+import { validateEmail, validateBookId } from "../../validator/validator";
 
 const orderSchema = new Schema<Order>(
   {
@@ -17,7 +17,7 @@ const orderSchema = new Schema<Order>(
       ref: "Book",
       required: [true, "Product is required"],
       validate: {
-        validator: vlidateProduct,
+        validator: validateBookId,
         message: "Please enter a valid Product id",
       },
     },

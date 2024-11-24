@@ -26,11 +26,13 @@ export const validateUpdateData = (data: object): boolean => {
   const isValid = keys.every((key) => allowedFields.includes(key));
   return isValid && keys.length > 0;
 };
+//validator for email
 export const validateEmail = (email: string): boolean => {
   const emailRegex = /.+\@.+\..+/;
   return emailRegex.test(email);
 };
 
-export const vlidateProduct = (value: string) => {
+//validator for checking book id field before placing order
+export const validateBookId = (value: string) => {
   return mongoose.Types.ObjectId.isValid(value);
 };
