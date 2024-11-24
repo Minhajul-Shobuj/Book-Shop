@@ -1,6 +1,5 @@
 import express from "express";
 import { OrderController } from "./order.controller";
-import { checkBookonDb } from "../../middlewares/validateOrder";
 
 const router = express.Router();
 
