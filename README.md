@@ -1,21 +1,20 @@
 # 📚 Project Name
 
-_A brief description of your project, what it does, and its purpose._
+This is a backend application for e-commerce app. The application is created using typescript, express, mongoose. Used MongoDb atlas for database. It has maximum number of crud operation that an e-commerce application needed.
 
 ---
 
 ## 🚀 Live Demo
 
-🌐 [Click here to view the live version](#)  
-_(Replace `#` with your actual live link URL when available)_
+🌐 [Click here to view the live version](https://assignment-2-rho-six.vercel.app/)
 
 ---
 
 ## ✨ Features
 
-✅ **Feature 1**: Brief description.  
-✅ **Feature 2**: Brief description.  
-✅ **Feature 3**: Brief description.
+✅ **Feature 1**: Can add, update, delete product. Can get products and can also get exact product using \_id;  
+✅ **Feature 2**: Can post order and get total revenue from all orders.
+✅ **Feature 3**: All api has meningful validation with error message and where it stucked.
 
 ---
 
@@ -87,10 +86,11 @@ npm start
 3. POST /api/books: Create a new book.
 4. PUT /api/books/:id: Update a book by ID.
 5. DELETE /api/books/:id: Delete a book by ID.
+
    🛒 Orders
-6. GET /api/orders: Get all orders.
-7. POST /api/orders: Create a new order.
-8. GET /api/orders/revenue: Calculate total revenue from orders
+
+6. POST /api/orders: Create a new order.
+7. GET /api/orders/revenue: Calculate total revenue from orders
 
 🔧 Scripts
 
