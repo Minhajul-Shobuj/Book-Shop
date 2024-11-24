@@ -105,19 +105,16 @@ Fork the repository.
 Create a new branch:
 
 ```bash
-Copy code
 git checkout -b feature-branch
 Make changes and commit:
 ```
 
 ```bash
-Copy code
 git commit -m "Add feature or fix bug"
 Push changes to your fork:
 ```
 
 ```bash
-Copy code
 git push origin feature-branch
 ```
 
@@ -126,4 +123,4 @@ Submit a pull request.
 🙏 Acknowledgments
 Special thanks to [Programming Hero](https://github.com/ProgrammingHero1) for guidance and support.
 
-🌟 Don't forget to star ⭐ the repository if you found this helpful!
+<H1>🌟 Don't forget to star ⭐ the repository if you found this helpful!</H1>
