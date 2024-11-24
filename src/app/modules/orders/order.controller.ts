@@ -1,9 +1,13 @@
 import { NextFunction, Request, Response } from "express";
 import { OrderService } from "./order.service";
+import { Types } from "mongoose";
 
 const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const order = req.body;
+    if (!Types.ObjectId.isValid(order.product)) {
+      throw new Error("ID is not valid. Provide a mongodb _id");
+    }
     const newOrder = await OrderService.createOrderIndb(order);
     res.status(200).json({
       success: true,

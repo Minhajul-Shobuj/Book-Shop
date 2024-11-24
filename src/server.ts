@@ -4,7 +4,9 @@ import mongoose from "mongoose";
 const port = config.port;
 const url = config.url;
 
-main().catch((err) => console.log(err));
+main().catch((err) => {
+  throw err;
+});
 
 async function main() {
   try {
@@ -13,7 +15,7 @@ async function main() {
     app.listen(port, () => {
       console.log(`Example app listening on port ${port}`);
     });
-  } catch (err) {
-    console.log(err);
+  } catch (err: any) {
+    throw new Error(err);
   }
 }
