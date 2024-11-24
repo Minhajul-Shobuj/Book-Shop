@@ -77,3 +77,53 @@ npm run build
 ```bash
 npm start
 ```
+
+📖 API Endpoints
+
+📚 Books
+
+1. GET /api/books: Get all books.
+2. GET /api/books/:id: Get a single book by ID.
+3. POST /api/books: Create a new book.
+4. PUT /api/books/:id: Update a book by ID.
+5. DELETE /api/books/:id: Delete a book by ID.
+   🛒 Orders
+6. GET /api/orders: Get all orders.
+7. POST /api/orders: Create a new order.
+8. GET /api/orders/revenue: Calculate total revenue from orders
+
+🔧 Scripts
+
+1. npm run dev: Start the development server.
+2. npm run build: Build the project.
+3. npm start: Start the production server.
+
+🤝 Contributing
+Contributions are welcome! Follow these steps to contribute:
+
+Fork the repository.
+Create a new branch:
+
+```bash
+Copy code
+git checkout -b feature-branch
+Make changes and commit:
+```
+
+```bash
+Copy code
+git commit -m "Add feature or fix bug"
+Push changes to your fork:
+```
+
+```bash
+Copy code
+git push origin feature-branch
+```
+
+Submit a pull request.
+
+🙏 Acknowledgments
+Special thanks to [Programming Hero](https://github.com/ProgrammingHero1) for guidance and support.
+
+🌟 Don't forget to star ⭐ the repository if you found this helpful!
