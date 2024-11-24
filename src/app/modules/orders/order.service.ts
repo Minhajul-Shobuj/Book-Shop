@@ -2,6 +2,7 @@ import { Order } from "./order.interface";
 import { OrderModel } from "./order.model";
 import { BookModel } from "../books/book.model";
 
+//post an order in database
 const createOrderIndb = async (order: Order) => {
   try {
     const checkBook = await BookModel.findById(order.product);
@@ -15,6 +16,7 @@ const createOrderIndb = async (order: Order) => {
   }
 };
 
+//calculate total revenue
 const CalculateRevenue = async () => {
   try {
     const result = await OrderModel.aggregate([

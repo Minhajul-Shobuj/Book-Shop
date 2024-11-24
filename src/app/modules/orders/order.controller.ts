@@ -2,6 +2,7 @@ import { NextFunction, Request, Response } from "express";
 import { OrderService } from "./order.service";
 import { Types } from "mongoose";
 
+//controller for posting an order in database
 const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const order = req.body;
@@ -18,6 +19,7 @@ const createOrder = async (req: Request, res: Response, next: NextFunction) => {
   }
 };
 
+//controller for getting total revenue from database
 const getRevenue = async (req: Request, res: Response, next: NextFunction) => {
   try {
     const totalRevenue = await OrderService.CalculateRevenue();
