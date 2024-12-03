@@ -6,7 +6,7 @@ _This is a backend application for e-commerce app. The application is created us
 
 ## 🚀 Live Demo
 
-🌐 [Click here to view the live version](https://assignment-2-rho-six.vercel.app/)
+🌐 [Click here to view the live version](https://book-shop-steel.vercel.app/)
 
 ---
 
