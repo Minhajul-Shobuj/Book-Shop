@@ -82,11 +82,11 @@ npm start
 
 📚 Books
 
-1. GET /api/books: Get all books.
-2. GET /api/books/:id: Get a single book by ID.
-3. POST /api/books: Create a new book.
-4. PUT /api/books/:id: Update a book by ID.
-5. DELETE /api/books/:id: Delete a book by ID.
+1. GET /api/products: Get all books.
+2. GET /api/products/:id: Get a single book by ID.
+3. POST /api/products: Create a new book.
+4. PUT /api/products/:id: Update a book by ID.
+5. DELETE /api/products/:id: Delete a book by ID.
 
    🛒 Orders
 
