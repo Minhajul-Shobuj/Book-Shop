@@ -11,7 +11,7 @@ app.use(express.json());
 app.use(cors());
 
 //application routes
-app.use('/api/books', BookRoute);
+app.use('/api/products', BookRoute);
 app.use('/api/orders', OrderRoute);
 
 app.get('/', (req: Request, res: Response) => {

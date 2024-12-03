@@ -35,7 +35,7 @@ const getSingleBook = async (
   next: NextFunction,
 ) => {
   try {
-    const id = req.params.bookId;
+    const id = req.params.productId;
     const book = await BookService.getBookById(id);
     if (!book) {
       const error = new Error('Book not found');
@@ -53,7 +53,7 @@ const getSingleBook = async (
 // controller for deleting a specific book using _id from database.
 const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = req.params.bookId;
+    const id = req.params.productId;
     const book = await BookService.deleteBook(id);
     res.status(200).json({
       success: true,
@@ -67,7 +67,7 @@ const deleteBook = async (req: Request, res: Response, next: NextFunction) => {
 // controller for updating a specific book fields using _id on database.
 const updateBook = async (req: Request, res: Response, next: NextFunction) => {
   try {
-    const id = req.params.bookId;
+    const id = req.params.productId;
     const data = req.body;
     const updatedBook = await BookService.updateBook(id, data);
     res.status(200).json({
